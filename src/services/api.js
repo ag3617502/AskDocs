@@ -2,7 +2,8 @@ import axios from "axios";
 
 // Create an Axios instance with base URL
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5006/api",
+  baseURL:
+    import.meta.env.VITE_API_URL || "https://ask-docs-be.vercel.app/api",
 });
 
 // Add a request interceptor to include the JWT token
