@@ -41,7 +41,7 @@ const ChatArea = ({ conversationId }) => {
       // Update with actual DB IDs and append AI response
       setMessages((prev) => [
         ...prev.filter(m => m._id !== optimisticId), // remove optimistic
-        // data.userMessage,
+        data.userMessage,
         data.aiMessage
       ]);
     } catch (err) {
