@@ -30,15 +30,17 @@ const ChatArea = ({ conversationId }) => {
     const userText = input;
     setInput("");
     
+    const optimisticId = Date.now();
+    
     // Optimistic UI
-    setMessages((prev) => [...prev, { _id: Date.now(), text: userText, sender: "user" }]);
+    setMessages((prev) => [...prev, { _id: optimisticId, text: userText, sender: "user" }]);
     setLoading(true);
 
     try {
       const { data } = await api.post("/chat", { conversationId, text: userText });
       // Update with actual DB IDs and append AI response
       setMessages((prev) => [
-        ...prev.filter(m => m._id !== Date.now()), // remove optimistic
+        ...prev.filter(m => m._id !== optimisticId), // remove optimistic
         data.userMessage,
         data.aiMessage
       ]);
